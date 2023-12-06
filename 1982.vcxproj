@@ -150,7 +150,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\game_elements\bullet.cpp" />
+    <ClCompile Include="src\game_elements\enemy.cpp" />
+    <ClCompile Include="src\game_elements\player.cpp" />
+    <ClCompile Include="src\game_manager\game.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\screen_manager\rules.cpp" />
+    <ClCompile Include="src\screen_manager\screenCredits.cpp" />
+    <ClCompile Include="src\screen_manager\screenGameplay.cpp" />
+    <ClCompile Include="src\screen_manager\screenMenu.cpp" />
+    <ClCompile Include="src\utils_manager\rectangleButton.cpp" />
+    <ClCompile Include="src\utils_manager\utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\game_elements\bullet.h" />
+    <ClInclude Include="src\game_elements\enemy.h" />
+    <ClInclude Include="src\game_elements\player.h" />
+    <ClInclude Include="src\game_manager\game.h" />
+    <ClInclude Include="src\screen_manager\rules.h" />
+    <ClInclude Include="src\screen_manager\screenCredits.h" />
+    <ClInclude Include="src\screen_manager\screenGameplay.h" />
+    <ClInclude Include="src\screen_manager\screenMenu.h" />
+    <ClInclude Include="src\utils_manager\rectangleButton.h" />
+    <ClInclude Include="src\utils_manager\utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

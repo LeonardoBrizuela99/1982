@@ -1,18 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Archivos de origen">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="game_manager">
+      <UniqueIdentifier>{ad0c4da4-76e9-4d5b-8f66-bae8e0042e35}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="screen_manager">
+      <UniqueIdentifier>{c9c35958-fcd6-4def-9bb8-0a39d9b0e6fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils_manager">
+      <UniqueIdentifier>{d8b614f4-6be5-4462-91af-4be95b107a1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game_elements">
+      <UniqueIdentifier>{817f6c8e-f678-4b17-b503-a22757c7d037}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\screen_manager\rules.cpp">
+      <Filter>screen_manager</Filter>
     </ClCompile>
+    <ClCompile Include="src\screen_manager\screenCredits.cpp">
+      <Filter>screen_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\screen_manager\screenGameplay.cpp">
+      <Filter>screen_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\screen_manager\screenMenu.cpp">
+      <Filter>screen_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils_manager\rectangleButton.cpp">
+      <Filter>utils_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils_manager\utils.cpp">
+      <Filter>utils_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game_manager\game.cpp">
+      <Filter>game_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game_elements\bullet.cpp">
+      <Filter>game_elements</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game_elements\enemy.cpp">
+      <Filter>game_elements</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game_elements\player.cpp">
+      <Filter>game_elements</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\screen_manager\rules.h">
+      <Filter>screen_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\screen_manager\screenCredits.h">
+      <Filter>screen_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\screen_manager\screenGameplay.h">
+      <Filter>screen_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\screen_manager\screenMenu.h">
+      <Filter>screen_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils_manager\rectangleButton.h">
+      <Filter>utils_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils_manager\utils.h">
+      <Filter>utils_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game_manager\game.h">
+      <Filter>game_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game_elements\bullet.h">
+      <Filter>game_elements</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game_elements\enemy.h">
+      <Filter>game_elements</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game_elements\player.h">
+      <Filter>game_elements</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
