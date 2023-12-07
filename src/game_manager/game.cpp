@@ -24,10 +24,8 @@ namespace game
 	void DeInitTextures(GameTextures& gameTextures);
 	void DeInitSounds(SoundsGame& soundsGame);
 	void PauseScreen(GameRectangleButton& gameButtons, Vector2& mouse, bool& isPaused);
-	void GameOverScreen(GameRectangleButton& gameButtons, Vector2& mouse, bool& isGameOver/*,Bird& bird*/);
-	/*void InitGame();
-	void UpdateGame();
-	void CloseGame();*/
+	void GameOverScreen(GameRectangleButton& gameButtons, Vector2& mouse, bool& isGameOver, Player& player);
+	
 	
     
 	static int fontSize = 40;
@@ -37,9 +35,7 @@ namespace game
 	
 	void RunGame()
 	{
-		/*InitGame();
-		UpdateGame();
-		CloseGame();*/
+		
        
 		const int screenWidth = 1024;
 		const int screenHeight = 768;
@@ -60,7 +56,7 @@ namespace game
 		GameRectangleButton gameButtons;
 		InitButtons(gameButtons);
 		Enemy firstEnemy = CreateEnemy(gameTextures.enemy);
-		/*Enemy secondEnemy = CreateEnemy();*/
+		
 
 		Player player = CreatePlayer(gameTextures.plane,gameTextures.bullet);
 		
@@ -95,7 +91,7 @@ namespace game
 					SetExitKey(NULL);
 
 					UpdateMusicStream(musicGameplay);
-					GameScreenSingleplayer(soundsGame,player,firstEnemy/*,secondEnemy*/, isPaused, isGameOver, gameButtons, gameTextures, currentScreen, mouse);
+					GameScreenSingleplayer(soundsGame,player,firstEnemy, isPaused, isGameOver, gameButtons, gameTextures, currentScreen, mouse);
 					break;
 				case GameScreen::RULES:
 					SetExitKey(NULL);
@@ -272,15 +268,15 @@ namespace game
 			}
 		}
 	}
-	void GameOverScreen(GameRectangleButton& gameButtons, Vector2& mouse, bool& isGameOver/*, Bird& bird*/)
+	void GameOverScreen(GameRectangleButton& gameButtons, Vector2& mouse, bool& isGameOver, Player &player)
 	{
 		if (isGameOver)
 		{
-			//int score = bird.score;
-			int playerScore =100;
+			
+		
 		
 			DrawRectangle((GetScreenWidth() / 2) - 300, GetScreenHeight() / 2 - 200, 600, 500, BLACK);
-			DrawText(TextFormat(" Score: %02i", playerScore), (GetScreenWidth() / 2-100) , (GetScreenHeight() / 2) + 200, 40, WHITE);
+			
 
 			DrawText("GAME OVER", (GetScreenWidth() / 2) - 200, (GetScreenHeight() / 2) - 140, 60, WHITE);
 
@@ -347,6 +343,7 @@ namespace game
 			else if (!optionsCollision(mouse, gameButtons.restartButton))
 			{
 				gameButtons.restartButton.isSelected = false;
+				InitPlane(player);
 			}
 			
 		}
@@ -415,6 +412,8 @@ namespace game
 			}
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.backButton.isSelected == true)
 			{
+				InitPlane(player);
+				ResetEnemy(firstEnemy);
 				/*InitBird(bird);
 				ResetWall(firstWall, secondWall);*/
 
@@ -430,8 +429,8 @@ namespace game
 			else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.restartButton.isSelected == true)
 			{
 				pauseSound =false;
-				/*InitBird(bird);
-				ResetWall(firstWall, secondWall);*/
+				InitPlane(player);
+				ResetEnemy(firstEnemy);
 				isPaused = false;
 
 			}
@@ -439,35 +438,24 @@ namespace game
 		}
 		if (isGameOver)
 		{
-			static bool hasPlayedLoseSound = false;
 			
-
-			
-			//DrawText(TextFormat("Score: %i", /*bird.score*/), 0, 0, 40, WHITE);
-
-
-			if (!hasPlayedLoseSound)
-			{
-				PlaySound(soundsGame.lose);
-				hasPlayedLoseSound = true;
-			}
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.backButton.isSelected == true)
 			{
 				
 				currentScreen = GameScreen::MENU;
 				isGameOver = false;
-				hasPlayedLoseSound = false;
-				//InitBird(bird);
-				//ResetWall(firstWall, secondWall);
+				
+				InitPlane(player);
+				ResetEnemy(firstEnemy);
 
 			}
 			else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.restartButton.isSelected == true)
 			{
 				//bird.score = bird.score;
 				isGameOver = false;
-				hasPlayedLoseSound = false;
-				//RestartBird(bird);
-				//ResetWall(firstWall, secondWall);
+			
+				InitPlane(player);
+				ResetEnemy(firstEnemy);
 
 
 			}
@@ -479,21 +467,12 @@ namespace game
 		}
 		else
 		{
-			
-			// ... (código relacionado a jugadores y otras funciones)
-
-			
-			
-			//UpdateBird(bird, isPaused, isGameOver, firstWall,secondWall);
 			drawGame(gameTextures.background,isPaused, isGameOver);
-			UpdatePlayer(player,isPaused, firstEnemy);
+			UpdatePlayer(player,isPaused, firstEnemy, isGameOver);
 			UpdateEnemy(firstEnemy, isPaused);
-			//UpdateEnemy(secondEnemy);
-			//DrawBird(bird,isPaused);
-			DrawEnemy(firstEnemy);
-			//DrawEnemy(secondEnemy);
+			DrawEnemy(firstEnemy);	
 			PauseScreen(gameButtons, mouse, isPaused);
-			//GameOverScreen(gameButtons,mouse,isGameOver, bird);
+			GameOverScreen(gameButtons,mouse,isGameOver, player);
 			//DrawText(TextFormat(" Score: %i", bird.score), 0, 0, 40, WHITE);
 			//cout << bird.score << endl;
 			

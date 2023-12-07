@@ -11,9 +11,36 @@ Player CreatePlayer(Texture2D& texture, Texture2D& bullet)
 	player.speed = 400.0f;
 	player.texture = texture;
 	player.bulletTexture = bullet;
+	player.life = 3;
 	return player;
 }
 
+Player InitPlane(Player& player)
+{
+
+	player.rec.x = GetScreenWidth() / 2;
+	player.rec.y = 500;
+	player.rec.width = 50;
+	player.rec.height = 50;
+	player.color = RAYWHITE;
+	player.speed = 400.0f;
+	player.life = 3;
+	return player;
+}
+
+Player resetPlane(Player& player)
+{
+		
+		player.rec.x = GetScreenWidth() / 2;
+		player.rec.y = 500;
+		player.rec.width = 50;
+		player.rec.height = 50;
+		player.color = RAYWHITE;
+		player.speed = 400.0f;
+		player.life = player.life;
+		return player;
+	
+}
 void DrawPlayer(Player& player)
 {
 	//DrawRectangle(player.rec.x,player.rec.y,player.rec.width,player.rec.height,player.color);
@@ -44,37 +71,49 @@ void MovePlayer(Player& player)
 	CreateBullets({ (player.rec.x+25),player.rec.y}, player.bullets);
 }
 
-void UpdatePlayer(Player& player, bool& isPaused,Enemy& enemy)
+void UpdatePlayer(Player& player, bool& isPaused,Enemy& enemy, bool& isGameOver)
 {
-	if (!isPaused)
+	if (isGameOver==false)
 	{
-		MovePlayer(player);
-		UpadateBullets(player.bullets);
-		UpdateEnemy(enemy, isPaused);
-		
-		if (CheckCollision(player.rec, enemy.rect)) {
-			
-			player.rec.x = GetScreenWidth() / 2;
-			player.rec.y = 500;
-			ResetEnemy(enemy);
-			
-		}
-
-		for (int i = 0; i < MaxBullets; ++i) 
+		if (!isPaused)
 		{
-			player.bullets[i].texture=player.bulletTexture;
-			if (player.bullets[i].active) {
-				if (CheckCollisionBullet(player.bullets[i].position, { player.bullets[i].width, player.bullets[i].height }, enemy.rect)) {
-					
-					player.bullets[i].active = false; 
+			MovePlayer(player);
+			UpadateBullets(player.bullets);
+			UpdateEnemy(enemy, isPaused);
+
+			if (CheckCollision(player.rec, enemy.rect)) {
+
+				player.rec.x = GetScreenWidth() / 2;
+				player.rec.y = 500;
+				player.life -= 1;
+				ResetEnemy(enemy);
+
+				if (player.life <= 0)
+				{
+					isGameOver = true;
+					InitPlane(player);
 					ResetEnemy(enemy);
-					
+				}
+
+			}
+
+			for (int i = 0; i < MaxBullets; ++i)
+			{
+				player.bullets[i].texture = player.bulletTexture;
+				if (player.bullets[i].active) {
+					if (CheckCollisionBullet(player.bullets[i].position, { player.bullets[i].width, player.bullets[i].height }, enemy.rect)) {
+
+						player.bullets[i].active = false;
+						ResetEnemy(enemy);
+
+					}
 				}
 			}
 		}
+
+		DrawEnemy(enemy);
+		DrawBullets(player.bullets);
+		DrawPlayer(player);
 	}
-	
-	DrawEnemy(enemy);	
-	DrawBullets(player.bullets);
-	DrawPlayer(player);	
+
 }
