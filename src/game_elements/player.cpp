@@ -3,7 +3,7 @@
 Player CreatePlayer(Texture2D& texture, Texture2D& bullet)
 {
 	Player player;
-	player.rec.x = GetScreenWidth()/2;
+	player.rec.x = static_cast<float>(GetScreenWidth()/2);
 	player.rec.y = 500;
 	player.rec.width = 50;
 	player.rec.height = 50;
@@ -18,7 +18,7 @@ Player CreatePlayer(Texture2D& texture, Texture2D& bullet)
 Player InitPlane(Player& player)
 {
 
-	player.rec.x = GetScreenWidth() / 2;
+	player.rec.x = static_cast<float>(GetScreenWidth() / 2);
 	player.rec.y = 500;
 	player.rec.width = 50;
 	player.rec.height = 50;
@@ -31,7 +31,7 @@ Player InitPlane(Player& player)
 Player resetPlane(Player& player)
 {
 		
-		player.rec.x = GetScreenWidth() / 2;
+		player.rec.x = static_cast<float>( GetScreenWidth() / 2);
 		player.rec.y = 500;
 		player.rec.width = 50;
 		player.rec.height = 50;
@@ -44,7 +44,7 @@ Player resetPlane(Player& player)
 void DrawPlayer(Player& player)
 {
 	//DrawRectangle(player.rec.x,player.rec.y,player.rec.width,player.rec.height,player.color);
-	DrawTexture(player.texture, player.rec.x, player.rec.y, player.color);
+	DrawTexture(player.texture, static_cast<int>(player.rec.x), static_cast<int>(player.rec.y), player.color);
 
 }
 
@@ -83,7 +83,7 @@ void UpdatePlayer(Player& player, bool& isPaused,Enemy& enemy, bool& isGameOver)
 
 			if (CheckCollision(player.rec, enemy.rect)) {
 
-				player.rec.x = GetScreenWidth() / 2;
+				player.rec.x = static_cast<float>(GetScreenWidth() / 2);
 				player.rec.y = 500;
 				player.life -= 1;
 				ResetEnemy(enemy);

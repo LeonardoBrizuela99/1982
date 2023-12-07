@@ -4,7 +4,7 @@
 Enemy CreateEnemy(Texture2D& texture)
 { 
     Enemy enemy;    
-    enemy.rect.x = GetRandomValue(0, GetScreenWidth() /2);
+    enemy.rect.x = static_cast<float>( GetRandomValue(0, GetScreenWidth() /2));
     enemy.rect.y = 50; 
     enemy.rect.width = 30; 
     enemy.rect.height =30;
@@ -34,13 +34,13 @@ void DrawEnemy(Enemy& enemy)
    if (enemy.active)
    {
      //DrawRectangle(enemy.rect.x,enemy.rect.y,enemy.rect.width,enemy.rect.height, RED);
-     DrawTexture(enemy.texture, enemy.rect.x, enemy.rect.y, enemy.color);
+     DrawTexture(enemy.texture, static_cast<int>(enemy.rect.x), static_cast<int>(enemy.rect.y), enemy.color);
    }
 }
 
 void ResetEnemy(Enemy& enemy)
 {  
-    enemy.rect.x = GetRandomValue(0, GetScreenWidth() / 2);
+    enemy.rect.x = static_cast<float>(GetRandomValue(0, GetScreenWidth() / 2));
     enemy.rect.y = -enemy.rect.height; 
     enemy.active = true; 
 }

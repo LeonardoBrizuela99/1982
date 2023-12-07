@@ -43,7 +43,7 @@ void UpadateBullets(Bullet bullets[MaxBullets])
             else
             {
                 //DrawRectangle(bullets[i].position.x, bullets[i].position.y, bullets[i].width, bullets[i].height, bullets[i].color); 
-                DrawTexture(bullets[i].texture, bullets[i].position.x, bullets[i].position.y , bullets[i].color);
+                DrawTexture(bullets[i].texture, static_cast<int>(bullets[i].position.x), static_cast<int>(bullets[i].position.y) , bullets[i].color);
             }
         }
     }
@@ -62,7 +62,7 @@ void DrawBullets(Bullet bullets[MaxBullets])
             else
             {
                // DrawRectangle(bullets[i].position.x, bullets[i].position.y, bullets[i].width, bullets[i].height, bullets[i].color);
-                DrawTexture(bullets[i].texture, bullets[i].position.x, bullets[i].position.y, bullets[i].color);
+                DrawTexture(bullets[i].texture, static_cast<int>(bullets[i].position.x), static_cast<int>(bullets[i].position.y), bullets[i].color);
             }
         } 
     }

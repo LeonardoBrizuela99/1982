@@ -42,7 +42,6 @@ namespace game
 		const int screenHeight = 768;
 
 		bool isPaused = false;
-		bool musicPaused = false;
 	    bool isGameOver = false;
 		InitWindow(screenWidth, screenHeight, "Flappy Bird");
 		InitAudioDevice();
