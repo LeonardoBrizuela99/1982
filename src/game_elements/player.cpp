@@ -8,7 +8,7 @@ Player CreatePlayer()
 	player.rec.width = 50;
 	player.rec.height = 50;
 	player.color = RED;
-	player.speed = 100.0f;
+	player.speed = 400.0f;
 	return player;
 }
 
@@ -23,11 +23,43 @@ void DrawPlayer(Player& player)
 
 }
 
-//void MovePlayer(Player& player)
-//{
-//}
-
-void UpdatePlayer(Player& player)
+void MovePlayer(Player& player)
 {
-	DrawPlayer(player);
+	if (IsKeyDown(KEY_W)>0)
+	{
+		player.rec.y -= player.speed * GetFrameTime();
+	}
+	if (IsKeyDown(KEY_S) && player.rec.y < GetScreenHeight() - 50)
+	{
+		player.rec.y += player.speed * GetFrameTime();
+	}
+
+	if (IsKeyDown(KEY_UP) && player.rec.y > 0)
+	{
+		player.rec.y -= player.speed * GetFrameTime();
+	}
+	if (IsKeyDown(KEY_DOWN) && player.rec.y < GetScreenHeight() - 50)
+	{
+		player.rec.y += player.speed * GetFrameTime();
+	}
+	if (IsKeyDown(KEY_LEFT) && player.rec.x > 0)
+	{
+		player.rec.x -= player.speed * GetFrameTime();
+	}
+	if (IsKeyDown(KEY_RIGHT) && player.rec.x < GetScreenWidth() - 50)
+	{
+		player.rec.x += player.speed * GetFrameTime();
+	}
+
+	
+}
+
+void UpdatePlayer(Player& player, bool& isPaused)
+{
+	if (!isPaused)
+	{
+		MovePlayer(player);
+	}
+
+	DrawPlayer(player);	
 }

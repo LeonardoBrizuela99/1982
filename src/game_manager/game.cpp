@@ -18,7 +18,6 @@ namespace game
 	void InitSounds(SoundsGame& soundsGame);
 	void InitButtons(GameRectangleButton& gameButtons);
 	void GameScreenMenu(GameRectangleButton& gameButtons, GameScreen& currentScreen, Vector2& mouse);
-	void GameScreenMultiplayer(SoundsGame& soundsGame, /*Bird& bird, Bird& bird2, Wall& firstPipe, Wall& secondPipe,*/ bool& isPaused, bool& isGameOver, GameRectangleButton& gameButtons, GameTextures& gameTextures, GameScreen& currentScreen, Vector2 mouse);
 	void GameScreenSingleplayer(SoundsGame& soundsGame, Player& player,/*Bird& bird, Wall& firstWall, Wall& secondWall,*/ bool& isPaused, bool& isGameOver, GameRectangleButton& gameButtons, GameTextures& gameTextures, GameScreen& currentScreen, Vector2 mouse);
 	void GameScreenCredits(GameRectangleButton& gameButtons, GameScreen& currentScreen, Vector2& mouse);
 	void GameScreenRules(GameRectangleButton& gameButtons, GameScreen& currentScreen, Vector2& mouse);
@@ -99,16 +98,8 @@ namespace game
 					 isGameRunning = false;
 
 					}
-					break;
-				case GameScreen::MULTIPLAYER:
-					SetExitKey(NULL);
+					break;					
 
-					UpdateMusicStream(musicGameplay);
-					GameScreenMultiplayer(soundsGame,/* bird,bird2, firstWall, secondWall,*/ isPaused, isGameOver, gameButtons, gameTextures, currentScreen, mouse);
-
-					
-
-					break;
 				case GameScreen::GAMEPLAY:
 					SetExitKey(NULL);
 
@@ -404,11 +395,8 @@ namespace game
 	void GameScreenMenu(GameRectangleButton& gameButtons, GameScreen& currentScreen, Vector2& mouse)
 	{
 		
-		drawMenu(gameButtons.playButton, gameButtons.multiplayerButton, gameButtons.rulesButton, gameButtons.creditsButton, gameButtons.exitButton, mouse);
-		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.multiplayerButton.isSelected == true)
-		{
-			currentScreen = GameScreen::MULTIPLAYER;
-		}
+		drawMenu(gameButtons.playButton, gameButtons.rulesButton, gameButtons.creditsButton, gameButtons.exitButton, mouse);
+		
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.playButton.isSelected == true)
 		{
 			currentScreen = GameScreen::GAMEPLAY;
@@ -427,97 +415,7 @@ namespace game
 			currentScreen = GameScreen::EXIT;
 		}
 	}
-	void GameScreenMultiplayer(SoundsGame& soundsGame, /*Bird& bird,Bird& bird2, Wall& firstWall, Wall& secondWall,*/ bool& isPaused, bool& isGameOver, GameRectangleButton& gameButtons, GameTextures& gameTextures, GameScreen& currentScreen, Vector2 mouse)
-	{
-		if (isPaused)
-		{
-			static bool pauseSound = false;
-			if (!pauseSound)
-			{
-				PlaySound(soundsGame.pause);
-				pauseSound = true;
-			}
-
-			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.backButton.isSelected == true)
-			{
-				/*InitBird(bird);
-				InitBird(bird2);
-				ResetWall(firstWall, secondWall);*/
-				pauseSound = false;
-				currentScreen = GameScreen::MENU;
-				isPaused = false;
-			}
-			else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.continueButton.isSelected == true)
-			{
-				isPaused = false;
-				pauseSound = false;
-
-			}
-			else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.restartButton.isSelected == true)
-			{
-				/*InitBird(bird2);
-				ResetWall(firstWall, secondWall);*/
-				isPaused = false;
-				pauseSound = false;
-
-			}
-
-		}
-		if (isGameOver)
-		{
-			static bool hasPlayedLoseSound = false;
-
-			//DrawText(TextFormat(" Score: %i", /*bird.score*/), 0, 0, 40, WHITE);
-			if (!hasPlayedLoseSound)
-			{
-				PlaySound(soundsGame.lose);
-				hasPlayedLoseSound = true;
-			}
-			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.backButton.isSelected == true)
-			{
-				
-				currentScreen = GameScreen::MENU;
-				isGameOver = false;
-				hasPlayedLoseSound = false;
-				/*InitBird(bird);
-				InitBird(bird2);
-				ResetWall(firstWall, secondWall);*/
-
-			}
-			else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.restartButton.isSelected == true)
-			{
-				
-				isGameOver = false;
-				hasPlayedLoseSound = false;
-			/*	RestartBird(bird);
-				RestartBird(bird2);
-				ResetWall(firstWall, secondWall);*/
-
-			}
-		}
-		if (IsKeyPressed(KEY_ESCAPE))
-		{
-			isPaused = !isPaused;
-			PlaySound(soundsGame.pause);
-		}
-		else
-		{
-			/*UpdateWall(firstWall, isPaused, isGameOver);
-			UpdateWall(secondWall, isPaused, isGameOver);
-			UpdateBird(bird, isPaused, isGameOver, firstWall, secondWall);
-			UpdateBird_2(bird2, isPaused, isGameOver, firstWall, secondWall)*/;
-			
-			drawGame(gameTextures.background, isPaused,  isGameOver);
-			/*DrawBird(bird, isPaused);
-			DrawBird(bird2, isPaused);
-			DrawWall(firstWall);
-			DrawWall(secondWall);*/
-			PauseScreen(gameButtons,mouse,isPaused);
-			//GameOverScreen(gameButtons, mouse, isGameOver/*, bird*/);
-			//DrawText(TextFormat(" Score: %i", bird.score), 0, 0, 40, WHITE);
-
-		}
-	}
+	
 	void GameScreenSingleplayer(SoundsGame& soundsGame, Player& player/*,Bird& bird, Wall& firstWall, Wall& secondWall,*/,bool &isPaused, bool& isGameOver, GameRectangleButton& gameButtons, GameTextures& gameTextures, GameScreen& currentScreen, Vector2 mouse)
 	{
 		if (isPaused)
@@ -598,7 +496,7 @@ namespace game
 			//UpdateWall(secondWall,isPaused,isGameOver);
 			//UpdateBird(bird, isPaused, isGameOver, firstWall,secondWall);
 			drawGame(gameTextures.background,isPaused, isGameOver);
-			UpdatePlayer(player);
+			UpdatePlayer(player,isPaused);
 			
 			//DrawBird(bird,isPaused);
 			//DrawWall(firstWall);

@@ -9,15 +9,9 @@ enum class GameScreen
 {
 	MENU,
 	GAMEPLAY,
-    MULTIPLAYER,
 	RULES,
 	CREDITS,
 	EXIT
 };
 
-
-void drawGame(
-    Texture2D background,
-   
-    bool isPaused,
-    bool isGameOver);
+void drawGame(Texture2D background, bool isPaused, bool isGameOver);

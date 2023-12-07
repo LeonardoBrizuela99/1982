@@ -1,10 +1,7 @@
 #include "screenMenu.h"
 #include"game_manager/game.h"
 
-//using namespace game;
-
-void drawMenu(	RectangleButton& playButton,
-              	RectangleButton& multiplayerButton,
+void drawMenu(	RectangleButton& playButton,                                    
 				RectangleButton& rulesButton,
 				RectangleButton& creditsButton,
 				RectangleButton& exitButton,
@@ -16,24 +13,10 @@ void drawMenu(	RectangleButton& playButton,
 
 	const int fontSize = 40;
 
-	DrawText("1982", (GetScreenWidth() / 2) - 200, (GetScreenHeight() / 2 - 300), 60, WHITE);
+	DrawText("1982", (GetScreenWidth() / 2)-60 , (GetScreenHeight() / 2 - 300), 60, WHITE);
 
 	DrawText("Version 1.0", GetScreenWidth() - 120, GetScreenHeight() - 30, 20, WHITE);
 
-	multiplayerButton.pos.x = (GetScreenWidth() / 2) - (multiplayerButton.size.x / 2);
-	multiplayerButton.pos.y = static_cast<float>(GetScreenHeight() / 2-113) - (multiplayerButton.size.y);
-
-	DrawRectangle(static_cast<int>(multiplayerButton.pos.x),
-		static_cast<int>(multiplayerButton.size.x),
-		static_cast<int>(multiplayerButton.pos.y),
-		static_cast<int>(multiplayerButton.size.y),
-		WHITE);
-
-	DrawText("MULTIPLAYER",
-		static_cast<int>(multiplayerButton.pos.x ),
-		static_cast<int>(multiplayerButton.pos.y + 5),
-		30,
-		RED);
 
 	playButton.pos.x = (GetScreenWidth() / 2) - (playButton.size.x / 2);
 	playButton.pos.y = static_cast<float>(GetScreenHeight() / 2) - (playButton.size.y);
@@ -95,25 +78,7 @@ void drawMenu(	RectangleButton& playButton,
 				fontSize,
 				RED);
 
-	if (optionsCollision(mouse, multiplayerButton))
-	{
-		multiplayerButton.isSelected = true;
-		DrawRectangle(static_cast<int>(multiplayerButton.pos.x),
-			static_cast<int>(multiplayerButton.pos.y),
-			static_cast<int>(multiplayerButton.size.x),
-			static_cast<int>(multiplayerButton.size.y),
-			GRAY);
-
-		DrawText("MULTIPLAYER",
-			static_cast<int>(multiplayerButton.pos.x ),
-			static_cast<int>(multiplayerButton.pos.y + 5),
-			30,
-			RED);
-	}
-	else if (!optionsCollision(mouse, multiplayerButton))
-	{
-		multiplayerButton.isSelected = false;
-	}
+	
 
 	if (optionsCollision(mouse, playButton))
 	{
@@ -196,29 +161,3 @@ void drawMenu(	RectangleButton& playButton,
 	}
 }
 
-//void GameScreenMenu(GameRectangleButton& gameButtons, GameScreen& currentScreen, Vector2& mouse)
-//{
-//
-//	drawMenu(gameButtons.playButton, gameButtons.multiplayerButton, gameButtons.rulesButton, gameButtons.creditsButton, gameButtons.exitButton, mouse);
-//	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.multiplayerButton.isSelected == true)
-//	{
-//		currentScreen = GameScreen::MULTIPLAYER;
-//	}
-//	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.playButton.isSelected == true)
-//	{
-//		currentScreen = GameScreen::GAMEPLAY;
-//
-//	}
-//	else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.rulesButton.isSelected == true)
-//	{
-//		currentScreen = GameScreen::RULES;
-//	}
-//	else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.creditsButton.isSelected == true)
-//	{
-//		currentScreen = GameScreen::CREDITS;
-//	}
-//	else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.exitButton.isSelected == true)
-//	{
-//		currentScreen = GameScreen::EXIT;
-//	}
-//}
