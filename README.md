@@ -13,7 +13,7 @@ Game Dev
 [Leonardo Brizuela](https://leonardobrizuela.itch.io/1982)
 
 Game art
- (https://www.kenney.nl/assets/pixel-shmup)
+ https://www.kenney.nl/assets/pixel-shmup
 [LuminousDragonGames](https://opengameart.org/content/perfectly-seamless-island-background)
 
 Game Music && SFX
