@@ -18,7 +18,7 @@ namespace game
 	void InitSounds(SoundsGame& soundsGame);
 	void InitButtons(GameRectangleButton& gameButtons);
 	void GameScreenMenu(GameRectangleButton& gameButtons, GameScreen& currentScreen, Vector2& mouse);
-	void GameScreenSingleplayer(SoundsGame& soundsGame, Player& player, Enemy& firstEnemy/*, Enemy& secondEnemy*/, bool& isPaused, bool& isGameOver, GameRectangleButton& gameButtons, GameTextures& gameTextures, GameScreen& currentScreen, Vector2 mouse);
+	void GameScreenSingleplayer(SoundsGame& soundsGame, Player& player, Enemy& firstEnemy, bool& isPaused, bool& isGameOver, GameRectangleButton& gameButtons, GameTextures& gameTextures, GameScreen& currentScreen, Vector2 mouse);
 	void GameScreenCredits(GameRectangleButton& gameButtons, GameScreen& currentScreen, Vector2& mouse);
 	void GameScreenRules(GameRectangleButton& gameButtons, GameScreen& currentScreen, Vector2& mouse);
 	void DeInitTextures(GameTextures& gameTextures);
@@ -45,9 +45,8 @@ namespace game
 	    bool isGameOver = false;
 		InitWindow(screenWidth, screenHeight, "Flappy Bird");
 		InitAudioDevice();
-		Music music = LoadMusicStream("res/sounds/snowfall-final.mp3");
-		Music musicGameplay = LoadMusicStream("res/sounds/music.mp3");
-		PlayMusicStream(music);
+		
+		Music musicGameplay = LoadMusicStream("res/sounds/forestmusic.wav");
 		PlayMusicStream(musicGameplay);
 		SoundsGame soundsGame;
 		InitSounds(soundsGame);
@@ -78,7 +77,7 @@ namespace game
 				{
 				case GameScreen::MENU:
 
-					UpdateMusicStream(music);
+					
 					GameScreenMenu(gameButtons, currentScreen, mouse);
 					if (IsKeyPressed(KEY_ESCAPE))
 					{
@@ -95,13 +94,13 @@ namespace game
 					break;
 				case GameScreen::RULES:
 					SetExitKey(NULL);
-					UpdateMusicStream(music);
+					
 					GameScreenRules(gameButtons, currentScreen, mouse);
 
 					break;
 				case GameScreen::CREDITS:
 					SetExitKey(NULL);
-					UpdateMusicStream(music);
+					
 					GameScreenCredits(gameButtons, currentScreen, mouse);
 					
 					break;
@@ -116,7 +115,7 @@ namespace game
 			EndDrawing();
 		}
 		
-		UnloadMusicStream(music);
+		
 		UnloadMusicStream(musicGameplay);
 		DeInitSounds(soundsGame);
 		CloseAudioDevice();
@@ -134,10 +133,7 @@ namespace game
 	}
 	void InitSounds(SoundsGame& soundsGame)
 	{
-		soundsGame.jumpSound=LoadSound("res/sounds/jumping.wav");
-		soundsGame.fallSound=LoadSound("res/sounds/fall.wav");
-		soundsGame.loseLife=LoadSound("res/sounds/loseLife.wav");
-		soundsGame.lose=LoadSound("res/sounds/lose.wav");
+	
 		soundsGame.pause=LoadSound("res/sounds/pop.wav");
 
 	}
@@ -147,15 +143,10 @@ namespace game
 		UnloadTexture(gameTextures.plane);
 		UnloadTexture(gameTextures.enemy);
 		UnloadTexture(gameTextures.bullet);
-	
 		
 	}
 	void DeInitSounds(SoundsGame& soundsGame)
 	{
-		UnloadSound(soundsGame.jumpSound);
-		UnloadSound(soundsGame.fallSound);
-		UnloadSound(soundsGame.loseLife);
-		UnloadSound(soundsGame.lose);
 		UnloadSound(soundsGame.pause);
 	}
 	void PauseScreen(GameRectangleButton& gameButtons, Vector2& mouse,bool& isPaused)

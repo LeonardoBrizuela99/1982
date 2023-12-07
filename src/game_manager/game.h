@@ -29,10 +29,6 @@ namespace game
 	};
 	struct SoundsGame
 	{
-		Sound jumpSound;
-		Sound fallSound;
-		Sound loseLife;
-		Sound lose;
 		Sound pause;
 	};
 	
