@@ -16,7 +16,7 @@ void drawMenu(	RectangleButton& playButton,
 
 	const int fontSize = 40;
 
-	DrawText("FLAPPY BIRD", (GetScreenWidth() / 2) - 200, (GetScreenHeight() / 2 - 300), 60, WHITE);
+	DrawText("1982", (GetScreenWidth() / 2) - 200, (GetScreenHeight() / 2 - 300), 60, WHITE);
 
 	DrawText("Version 1.0", GetScreenWidth() - 120, GetScreenHeight() - 30, 20, WHITE);
 

@@ -147,14 +147,9 @@ namespace game
 	}
 	void InitTextures(GameTextures& gameTextures)
 	{
-		gameTextures.foreground = LoadTexture("res/textures/background1.png");
-		gameTextures.midground = LoadTexture("res/textures/background2.png");
-		gameTextures.background = LoadTexture("res/textures/background4.png");
-		gameTextures.tree = LoadTexture("res/textures/trees.png");
-		gameTextures.bushTop = LoadTexture("res/textures/frontleaves.png");
-		gameTextures.bushDown = LoadTexture("res/textures/pushes.png");
-		gameTextures.texBirdOne = LoadTexture("res/textures/Bird2.png");
-		gameTextures.texBirdTwo = LoadTexture("res/textures/Bird1.png");
+		
+		gameTextures.background = LoadTexture("res/textures/IslandsMap.png");
+		
 	}
 	void InitSounds(SoundsGame& soundsGame)
 	{
@@ -168,13 +163,7 @@ namespace game
 	void DeInitTextures(GameTextures& gameTextures)
 	{
 		UnloadTexture(gameTextures.background);
-		UnloadTexture(gameTextures.midground);
-		UnloadTexture(gameTextures.foreground);
-		UnloadTexture(gameTextures.tree);
-		UnloadTexture(gameTextures.bushTop);
-		UnloadTexture(gameTextures.bushDown);
-		UnloadTexture(gameTextures.texBirdOne);
-		UnloadTexture(gameTextures.texBirdTwo);
+		
 	}
 	void DeInitSounds(SoundsGame& soundsGame)
 	{
@@ -518,7 +507,7 @@ namespace game
 			UpdateBird(bird, isPaused, isGameOver, firstWall, secondWall);
 			UpdateBird_2(bird2, isPaused, isGameOver, firstWall, secondWall)*/;
 			
-			drawGame(gameTextures.background, gameTextures.midground, gameTextures.foreground, gameTextures.tree, gameTextures.bushTop, gameTextures.bushDown, isPaused, isGameOver);
+			drawGame(gameTextures.background, isPaused,  isGameOver);
 			/*DrawBird(bird, isPaused);
 			DrawBird(bird2, isPaused);
 			DrawWall(firstWall);
@@ -608,7 +597,7 @@ namespace game
 			//UpdateWall(firstWall, isPaused,isGameOver);
 			//UpdateWall(secondWall,isPaused,isGameOver);
 			//UpdateBird(bird, isPaused, isGameOver, firstWall,secondWall);
-			drawGame(gameTextures.background,gameTextures.midground, gameTextures.foreground, gameTextures.tree, gameTextures.bushTop, gameTextures.bushDown, isPaused, isGameOver);
+			drawGame(gameTextures.background,isPaused, isGameOver);
 			UpdatePlayer(player);
 			
 			//DrawBird(bird,isPaused);

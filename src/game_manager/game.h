@@ -4,16 +4,15 @@
 #include"screen_manager/screenGameplay.h"
 namespace game
 {
+	
 	struct GameTextures
 	{
-		    Texture2D foreground ;
-			Texture2D midground  ;
+		
+		  
 			Texture2D background ;
-			Texture2D  tree      ;
-			Texture2D bushTop 	 ;
-			Texture2D bushDown	 ;
-			Texture2D texBirdOne ;
-			Texture2D texBirdTwo ;
+	
+	
+	
 	};
 
 	struct GameRectangleButton

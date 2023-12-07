@@ -15,12 +15,9 @@ enum class GameScreen
 	EXIT
 };
 
+
 void drawGame(
     Texture2D background,
-    Texture2D midground,
-    Texture2D foreground,
-    Texture2D tree,
-    Texture2D bushTop,
-    Texture2D bushDown,
+   
     bool isPaused,
     bool isGameOver);
