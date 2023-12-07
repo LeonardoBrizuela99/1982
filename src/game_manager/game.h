@@ -9,6 +9,9 @@ namespace game
 	{
 	  
 		Texture2D background;
+		Texture2D bullet;
+		Texture2D plane;
+		Texture2D enemy;
 	
 	};
 

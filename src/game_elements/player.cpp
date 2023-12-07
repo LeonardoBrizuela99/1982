@@ -1,20 +1,23 @@
 #include "player.h"
 
-Player CreatePlayer()
+Player CreatePlayer(Texture2D& texture, Texture2D& bullet)
 {
 	Player player;
 	player.rec.x = GetScreenWidth()/2;
 	player.rec.y = 500;
 	player.rec.width = 50;
 	player.rec.height = 50;
-	player.color = RED;
+	player.color = RAYWHITE;
 	player.speed = 400.0f;
+	player.texture = texture;
+	player.bulletTexture = bullet;
 	return player;
 }
 
 void DrawPlayer(Player& player)
 {
-	DrawRectangle(player.rec.x,player.rec.y,player.rec.width,player.rec.height,player.color);
+	//DrawRectangle(player.rec.x,player.rec.y,player.rec.width,player.rec.height,player.color);
+	DrawTexture(player.texture, player.rec.x, player.rec.y, player.color);
 
 }
 
@@ -57,7 +60,9 @@ void UpdatePlayer(Player& player, bool& isPaused,Enemy& enemy)
 			
 		}
 
-		for (int i = 0; i < MaxBullets; ++i) {
+		for (int i = 0; i < MaxBullets; ++i) 
+		{
+			player.bullets[i].texture=player.bulletTexture;
 			if (player.bullets[i].active) {
 				if (CheckCollisionBullet(player.bullets[i].position, { player.bullets[i].width, player.bullets[i].height }, enemy.rect)) {
 					

@@ -10,10 +10,12 @@ struct Player
 	Rectangle rec;
 	Color color;
 	float speed;
+	Texture2D texture;
+	Texture2D bulletTexture;
 	Bullet bullets[MaxBullets];
 };
 
-Player CreatePlayer();
+Player CreatePlayer(Texture2D& texture, Texture2D& bullet);
 void DrawPlayer(Player& player);
 void MovePlayer(Player& player);
 void UpdatePlayer(Player& player, bool& isPaused,Enemy& enemy);

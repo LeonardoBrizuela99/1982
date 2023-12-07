@@ -59,10 +59,10 @@ namespace game
 		InitTextures(gameTextures);
 		GameRectangleButton gameButtons;
 		InitButtons(gameButtons);
-		Enemy firstEnemy = CreateEnemy();
+		Enemy firstEnemy = CreateEnemy(gameTextures.enemy);
 		/*Enemy secondEnemy = CreateEnemy();*/
 
-		Player player = CreatePlayer();
+		Player player = CreatePlayer(gameTextures.plane,gameTextures.bullet);
 		
 		
 			SetExitKey(KEY_ESCAPE);
@@ -131,6 +131,9 @@ namespace game
 	{
 		
 		gameTextures.background = LoadTexture("res/textures/IslandsMap.png");
+		gameTextures.plane = LoadTexture("res/textures/ship_player.png");
+		gameTextures.bullet = LoadTexture("res/textures/bullet.png");
+		gameTextures.enemy = LoadTexture("res/textures/ship_enemy.png");
 		
 	}
 	void InitSounds(SoundsGame& soundsGame)
@@ -145,6 +148,10 @@ namespace game
 	void DeInitTextures(GameTextures& gameTextures)
 	{
 		UnloadTexture(gameTextures.background);
+		UnloadTexture(gameTextures.plane);
+		UnloadTexture(gameTextures.enemy);
+		UnloadTexture(gameTextures.bullet);
+	
 		
 	}
 	void DeInitSounds(SoundsGame& soundsGame)

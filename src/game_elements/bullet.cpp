@@ -18,7 +18,7 @@ void CreateBullets(Vector2 spawPositions, Bullet bullets[MaxBullets])
                 bullets[i].velocity.y *= 700;
                 bullets[i].width = 10.0f;
                 bullets[i].height = 15.0f;
-                bullets[i].color = RED;
+                bullets[i].color = RAYWHITE;
                 bullets[i].active = true;
                 break;
             }
@@ -42,7 +42,8 @@ void UpadateBullets(Bullet bullets[MaxBullets])
             }
             else
             {
-                DrawRectangle(bullets[i].position.x, bullets[i].position.y, bullets[i].width, bullets[i].height, bullets[i].color);               
+                //DrawRectangle(bullets[i].position.x, bullets[i].position.y, bullets[i].width, bullets[i].height, bullets[i].color); 
+                DrawTexture(bullets[i].texture, bullets[i].position.x, bullets[i].position.y , bullets[i].color);
             }
         }
     }
@@ -60,7 +61,8 @@ void DrawBullets(Bullet bullets[MaxBullets])
             }
             else
             {
-                DrawRectangle(bullets[i].position.x, bullets[i].position.y, bullets[i].width, bullets[i].height, bullets[i].color);
+               // DrawRectangle(bullets[i].position.x, bullets[i].position.y, bullets[i].width, bullets[i].height, bullets[i].color);
+                DrawTexture(bullets[i].texture, bullets[i].position.x, bullets[i].position.y, bullets[i].color);
             }
         } 
     }

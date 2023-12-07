@@ -1,7 +1,7 @@
 #include"enemy.h"
 #include "raylib.h"
 
-Enemy CreateEnemy()
+Enemy CreateEnemy(Texture2D& texture)
 { 
     Enemy enemy;    
     enemy.rect.x = GetRandomValue(0, GetScreenWidth() /2);
@@ -10,6 +10,7 @@ Enemy CreateEnemy()
     enemy.rect.height =30;
     enemy.color = RED;
     enemy.speed = 250;
+    enemy.texture = texture;
     enemy.active = true;
     return enemy;
 }
@@ -32,7 +33,8 @@ void DrawEnemy(Enemy& enemy)
 {
    if (enemy.active)
    {
-     DrawRectangle(enemy.rect.x,enemy.rect.y,enemy.rect.width,enemy.rect.height, RED);
+     //DrawRectangle(enemy.rect.x,enemy.rect.y,enemy.rect.width,enemy.rect.height, RED);
+     DrawTexture(enemy.texture, enemy.rect.x, enemy.rect.y, enemy.color);
    }
 }
 
