@@ -15,8 +15,10 @@ void drawRules(RectangleButton& backButton, Vector2 mouse)
 
     DrawText("RULES", (GetScreenWidth() / 2) - 120, 70, 60, WHITE);
 
-    DrawText("To play in Single Player, use the UP key.", 50, 150, fontSize, WHITE);
-    DrawText("For Multiplayer, use SPACEBAR.", 50, 210, fontSize, WHITE);
+    DrawText("To move use the arrows.", 50, 150, fontSize, WHITE);
+    DrawText("To shot press left click.", 50, 200, fontSize, WHITE);
+    DrawText("Press ESC to pause the game.", 50, 250, fontSize, WHITE);
+    DrawText("You only have 3 life.", 50, 310, fontSize, WHITE);
 
     backButton.pos.x = static_cast<float>(50);
     backButton.pos.y = static_cast<float>(GetScreenHeight() - 70);

@@ -1,13 +1,17 @@
 #include "game.h"
+
+#include<iostream>
+
 #include "raylib.h"
+
 #include "utils_manager/utils.h"
 #include "screen_manager/screenGameplay.h"
 #include "screen_manager/screenMenu.h"
 #include "screen_manager/screenCredits.h"
 #include "game_elements/enemy.h"
 #include"screen_manager/rules.h"
-#include<iostream>
 #include"game_elements/player.h"
+
 using namespace std;
 
 
@@ -25,13 +29,10 @@ namespace game
 	void DeInitSounds(SoundsGame& soundsGame);
 	void PauseScreen(GameRectangleButton& gameButtons, Vector2& mouse, bool& isPaused);
 	void GameOverScreen(GameRectangleButton& gameButtons, Vector2& mouse, bool& isGameOver, Player& player);
-	
-	
-    
+	  
 	static int fontSize = 40;
 
-
-	 bool isGameRunning = true;
+    bool isGameRunning = true;
 	
 	void RunGame()
 	{
@@ -339,7 +340,6 @@ namespace game
 			
 		}
 
-
 	}
 
 	
@@ -364,7 +364,6 @@ namespace game
 		gameButtons.exitButton = initButton(gameButtons.exitButton, buttonSize);
 		gameButtons.continueButton = initButton(gameButtons.continueButton, buttonSize);
 		gameButtons.backButton = initButton(gameButtons.backButton, buttonSize);
-	
 
 	}
 	void GameScreenMenu(GameRectangleButton& gameButtons, GameScreen& currentScreen, Vector2& mouse)
@@ -405,8 +404,6 @@ namespace game
 			{
 				InitPlane(player);
 				ResetEnemy(firstEnemy);
-				/*InitBird(bird);
-				ResetWall(firstWall, secondWall);*/
 
 				pauseSound = false;
 				currentScreen = GameScreen::MENU;
@@ -442,9 +439,8 @@ namespace game
 			}
 			else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && gameButtons.restartButton.isSelected == true)
 			{
-				//bird.score = bird.score;
+				
 				isGameOver = false;
-			
 				InitPlane(player);
 				ResetEnemy(firstEnemy);
 
@@ -463,9 +459,7 @@ namespace game
 			UpdateEnemy(firstEnemy, isPaused);
 			DrawEnemy(firstEnemy);	
 			PauseScreen(gameButtons, mouse, isPaused);
-			GameOverScreen(gameButtons,mouse,isGameOver, player);
-			//DrawText(TextFormat(" Score: %i", bird.score), 0, 0, 40, WHITE);
-			//cout << bird.score << endl;
+			GameOverScreen(gameButtons,mouse,isGameOver, player);		
 			
 		}	
 	}
@@ -476,7 +470,6 @@ namespace game
 		{
 			currentScreen = GameScreen::MENU;
 			
-
 		}
 	}
 	void GameScreenCredits(GameRectangleButton& gameButtons, GameScreen& currentScreen, Vector2& mouse)
@@ -487,9 +480,5 @@ namespace game
 		{
 			currentScreen = GameScreen::MENU;
 		}
-	}
-	
+	}	
 }
-
-
-

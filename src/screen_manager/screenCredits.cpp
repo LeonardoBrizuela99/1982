@@ -21,16 +21,11 @@ void drawCredits(RectangleButton& backButton,
 
     
     int nameLeftOffset = 40; 
-    DrawText("code: Ezequiel Prieto / Leonardo Brizuela", nameLeftOffset, creditsHeight, fontSize, WHITE);
-    DrawText("Parallax: https://gowldev.itch.io/gardens-forest ", nameLeftOffset, creditsHeight + 60, fontSize, WHITE);
-    DrawText("Bird: Leonardo Brizuela ", nameLeftOffset, creditsHeight + 140, fontSize, WHITE);
-    DrawText("sounds: https://freesound.org/people/oganesson/sounds/555015/", nameLeftOffset, creditsHeight + 220, fontSize, WHITE);
-    DrawText("sounds:https://freesound.org/people/Lefty_Studios/sounds/369515/", nameLeftOffset, creditsHeight + 240, fontSize, WHITE);
-    DrawText("sounds:https://freesound.org/people/MATRIXXX_/sounds/506546/", nameLeftOffset, creditsHeight + 280, fontSize, WHITE);
-    DrawText("sounds:https://freesound.org/people/MATRIXXX_/sounds/415991/", nameLeftOffset, creditsHeight + 320, fontSize, WHITE);
-    DrawText("sounds:https://freesound.org/people/cabled_mess/sounds/350981/", nameLeftOffset, creditsHeight + 360, fontSize, WHITE);
-    DrawText("menuMusic:https://freesound.org/people/ShadyDave/sounds/262259/", nameLeftOffset, creditsHeight + 480, fontSize, WHITE);
-    DrawText("GamplayMusic: https://freesound.org/people/ZHR%C3%98/sounds/614096/", nameLeftOffset, creditsHeight + 540, fontSize, WHITE);
+    DrawText("code: Leonardo Brizuela", nameLeftOffset, creditsHeight, fontSize, WHITE);
+    DrawText("Parallax: https://opengameart.org/content/perfectly-seamless-island-background ", nameLeftOffset, creditsHeight + 120, fontSize, WHITE);
+    DrawText("Ships and bullet: https://www.kenney.nl/assets/pixel-shmup", nameLeftOffset, creditsHeight + 170, fontSize, WHITE);
+    DrawText("sound: https://freesound.org/people/MATRIXXX_/sounds/506546/", nameLeftOffset, creditsHeight + 250, fontSize, WHITE);
+    DrawText("GamplayMusic:https://freesound.org/people/dkiller2204/sounds/423134/", nameLeftOffset, creditsHeight + 300, fontSize, WHITE);
 
     backButton.pos.x = 0;
     backButton.pos.y = static_cast<float>(GetScreenHeight() - backButton.size.y); 
