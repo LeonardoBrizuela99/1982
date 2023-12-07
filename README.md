@@ -10,7 +10,7 @@ Esc to go back In the menues
 
 Credits
 Game Dev
-Leonardo Brizuela Pagina Itch.io
+[Leonardo Brizuela](https://leonardobrizuela.itch.io/1982)
 
 Game art
  (https://www.kenney.nl/assets/pixel-shmup)
