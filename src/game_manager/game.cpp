@@ -43,7 +43,7 @@ namespace game
 
 		bool isPaused = false;
 	    bool isGameOver = false;
-		InitWindow(screenWidth, screenHeight, "Flappy Bird");
+		InitWindow(screenWidth, screenHeight, "1982");
 		InitAudioDevice();
 		
 		Music musicGameplay = LoadMusicStream("res/sounds/forestmusic.wav");
