@@ -2,6 +2,9 @@
 
 #include"raylib.h"
 #include"bullet.h"
+#include"enemy.h"
+#include"utils_manager/utils.h"
+
 struct Player
 { 
 	Rectangle rec;
@@ -11,7 +14,6 @@ struct Player
 };
 
 Player CreatePlayer();
-//Rectangle GetPlayer(Player& player);
 void DrawPlayer(Player& player);
 void MovePlayer(Player& player);
-void UpdatePlayer(Player& player, bool& isPaused);
+void UpdatePlayer(Player& player, bool& isPaused,Enemy& enemy);

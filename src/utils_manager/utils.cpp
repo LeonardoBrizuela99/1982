@@ -28,3 +28,24 @@ bool CheckCollision(const Rectangle& rectA, const Rectangle& rectB) {
 
     return true;
 }
+
+bool CheckCollisionBullet(const Vector2& posA, const Vector2& sizeA, const Rectangle& rectB) {
+   
+    float leftA = posA.x;
+    float rightA = posA.x + sizeA.x;
+    float topA = posA.y;
+    float bottomA = posA.y + sizeA.y;
+
+   
+    float leftB = rectB.x;
+    float rightB = rectB.x + rectB.width;
+    float topB = rectB.y;
+    float bottomB = rectB.y + rectB.height;
+
+   
+    if (bottomA <= topB || topA >= bottomB || rightA <= leftB || leftA >= rightB) {
+        return false;
+    }
+
+    return true;
+}

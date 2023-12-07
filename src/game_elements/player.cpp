@@ -12,11 +12,6 @@ Player CreatePlayer()
 	return player;
 }
 
-//Rectangle GetPlayer(Player& player)
-//{
-//	return Rectangle();
-//}
-
 void DrawPlayer(Player& player)
 {
 	DrawRectangle(player.rec.x,player.rec.y,player.rec.width,player.rec.height,player.color);
@@ -46,14 +41,35 @@ void MovePlayer(Player& player)
 	CreateBullets({ (player.rec.x+25),player.rec.y}, player.bullets);
 }
 
-void UpdatePlayer(Player& player, bool& isPaused)
+void UpdatePlayer(Player& player, bool& isPaused,Enemy& enemy)
 {
 	if (!isPaused)
 	{
 		MovePlayer(player);
 		UpadateBullets(player.bullets);
-	}
+		UpdateEnemy(enemy, isPaused);
+		
+		if (CheckCollision(player.rec, enemy.rect)) {
+			
+			player.rec.x = GetScreenWidth() / 2;
+			player.rec.y = 500;
+			ResetEnemy(enemy);
+			
+		}
 
+		for (int i = 0; i < MaxBullets; ++i) {
+			if (player.bullets[i].active) {
+				if (CheckCollisionBullet(player.bullets[i].position, { player.bullets[i].width, player.bullets[i].height }, enemy.rect)) {
+					
+					player.bullets[i].active = false; 
+					ResetEnemy(enemy);
+					
+				}
+			}
+		}
+	}
+	
+	DrawEnemy(enemy);	
 	DrawBullets(player.bullets);
 	DrawPlayer(player);	
 }

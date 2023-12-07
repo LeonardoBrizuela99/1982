@@ -18,7 +18,7 @@ namespace game
 	void InitSounds(SoundsGame& soundsGame);
 	void InitButtons(GameRectangleButton& gameButtons);
 	void GameScreenMenu(GameRectangleButton& gameButtons, GameScreen& currentScreen, Vector2& mouse);
-	void GameScreenSingleplayer(SoundsGame& soundsGame, Player& player,/*Bird& bird, Wall& firstWall, Wall& secondWall,*/ bool& isPaused, bool& isGameOver, GameRectangleButton& gameButtons, GameTextures& gameTextures, GameScreen& currentScreen, Vector2 mouse);
+	void GameScreenSingleplayer(SoundsGame& soundsGame, Player& player, Enemy& firstEnemy/*, Enemy& secondEnemy*/, bool& isPaused, bool& isGameOver, GameRectangleButton& gameButtons, GameTextures& gameTextures, GameScreen& currentScreen, Vector2 mouse);
 	void GameScreenCredits(GameRectangleButton& gameButtons, GameScreen& currentScreen, Vector2& mouse);
 	void GameScreenRules(GameRectangleButton& gameButtons, GameScreen& currentScreen, Vector2& mouse);
 	void DeInitTextures(GameTextures& gameTextures);
@@ -59,20 +59,11 @@ namespace game
 		InitTextures(gameTextures);
 		GameRectangleButton gameButtons;
 		InitButtons(gameButtons);
-		//Bird bird, bird2;
-		//bird = CreateBird(gameTextures.texBirdOne, gameTextures.texBirdTwo,soundsGame.jumpSound, soundsGame.fallSound, soundsGame.loseLife);
-		//bird2 = CreateBird(gameTextures.texBirdOne, gameTextures.texBirdTwo,soundsGame.jumpSound, soundsGame.fallSound, soundsGame.loseLife);
-		Player player = CreatePlayer();
-		// Wall firstWall;
-		// Wall secondWall;
-		 float wallDistance = static_cast<float>(GetScreenWidth()) / 1.5f;
-		 float wallWidth = 90.0f;
-		 float firstWallX = static_cast<float>(GetScreenWidth());
-		 float secondWallX = static_cast<float>(GetScreenWidth()) + wallDistance + wallWidth / 2;
+		Enemy firstEnemy = CreateEnemy();
+		/*Enemy secondEnemy = CreateEnemy();*/
 
+		Player player = CreatePlayer();
 		
-		 //firstWall = InitWall(firstWallX);
-		// secondWall = InitWall(secondWallX);
 		
 			SetExitKey(KEY_ESCAPE);
 
@@ -104,7 +95,7 @@ namespace game
 					SetExitKey(NULL);
 
 					UpdateMusicStream(musicGameplay);
-					GameScreenSingleplayer(soundsGame,player,/*bird, firstWall,secondWall,*/ isPaused, isGameOver, gameButtons, gameTextures, currentScreen, mouse);
+					GameScreenSingleplayer(soundsGame,player,firstEnemy/*,secondEnemy*/, isPaused, isGameOver, gameButtons, gameTextures, currentScreen, mouse);
 					break;
 				case GameScreen::RULES:
 					SetExitKey(NULL);
@@ -356,17 +347,6 @@ namespace game
 
 	}
 
-	/*void InitGame()
-	{
-	}
-
-	void UpdateGame()
-	{
-	}
-
-	void CloseGame()
-	{
-	}*/
 	
 	void InitButtons(GameRectangleButton& gameButtons)
 	{
@@ -416,7 +396,7 @@ namespace game
 		}
 	}
 	
-	void GameScreenSingleplayer(SoundsGame& soundsGame, Player& player/*,Bird& bird, Wall& firstWall, Wall& secondWall,*/,bool &isPaused, bool& isGameOver, GameRectangleButton& gameButtons, GameTextures& gameTextures, GameScreen& currentScreen, Vector2 mouse)
+	void GameScreenSingleplayer(SoundsGame& soundsGame, Player& player, Enemy& firstEnemy,bool &isPaused, bool& isGameOver, GameRectangleButton& gameButtons, GameTextures& gameTextures, GameScreen& currentScreen, Vector2 mouse)
 	{
 		if (isPaused)
 		{
@@ -492,15 +472,19 @@ namespace game
 		}
 		else
 		{
-			//UpdateWall(firstWall, isPaused,isGameOver);
-			//UpdateWall(secondWall,isPaused,isGameOver);
+			
+			// ... (código relacionado a jugadores y otras funciones)
+
+			
+			
 			//UpdateBird(bird, isPaused, isGameOver, firstWall,secondWall);
 			drawGame(gameTextures.background,isPaused, isGameOver);
-			UpdatePlayer(player,isPaused);
-			
+			UpdatePlayer(player,isPaused, firstEnemy);
+			UpdateEnemy(firstEnemy, isPaused);
+			//UpdateEnemy(secondEnemy);
 			//DrawBird(bird,isPaused);
-			//DrawWall(firstWall);
-			//DrawWall(secondWall);
+			DrawEnemy(firstEnemy);
+			//DrawEnemy(secondEnemy);
 			PauseScreen(gameButtons, mouse, isPaused);
 			//GameOverScreen(gameButtons,mouse,isGameOver, bird);
 			//DrawText(TextFormat(" Score: %i", bird.score), 0, 0, 40, WHITE);
