@@ -25,15 +25,7 @@ void DrawPlayer(Player& player)
 
 void MovePlayer(Player& player)
 {
-	if (IsKeyDown(KEY_W)>0)
-	{
-		player.rec.y -= player.speed * GetFrameTime();
-	}
-	if (IsKeyDown(KEY_S) && player.rec.y < GetScreenHeight() - 50)
-	{
-		player.rec.y += player.speed * GetFrameTime();
-	}
-
+	
 	if (IsKeyDown(KEY_UP) && player.rec.y > 0)
 	{
 		player.rec.y -= player.speed * GetFrameTime();
@@ -50,8 +42,8 @@ void MovePlayer(Player& player)
 	{
 		player.rec.x += player.speed * GetFrameTime();
 	}
-
 	
+	CreateBullets({ (player.rec.x+25),player.rec.y}, player.bullets);
 }
 
 void UpdatePlayer(Player& player, bool& isPaused)
@@ -59,7 +51,9 @@ void UpdatePlayer(Player& player, bool& isPaused)
 	if (!isPaused)
 	{
 		MovePlayer(player);
+		UpadateBullets(player.bullets);
 	}
 
+	DrawBullets(player.bullets);
 	DrawPlayer(player);	
 }
